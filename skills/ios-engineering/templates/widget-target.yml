@@ -1,0 +1,54 @@
+# ---------------------------------------------------------------------------
+# ORIGIN: a WidgetKit target and extension wiring from shipping xcodegen apps.
+# PURPOSE: paste under `targets:` of an xcodegen project.yml to add a WidgetKit extension that
+#          shares an App Group with the app and compiles a FEW app files read-only.
+# RULES (see references/traps.md):
+#   - Widget reads a snapshot (Codable struct in App Group UserDefaults), not the SwiftData stack.
+#   - Every image an entry draws counts against WidgetKit's archive budget (medium ≈ 2.1 Mpx,
+#     small ≈ 1 Mpx) — ship widget-sized assets and pin them with a test.
+#   - Same $(MARKETING_VERSION)/$(CURRENT_PROJECT_VERSION) as the app.
+#   - Fonts used in the widget must be in the extension's UIAppFonts (or registered in the bundle).
+#   - App Group UserDefaults → PrivacyInfo.xcprivacy reason 1C8F.1 (in app AND extension manifests).
+#   - Add the extension to the app target's dependencies with `embed: true`.
+# ---------------------------------------------------------------------------
+  {{App}}Widgets:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - {{App}}Widgets
+      # Files shared read-only with the extension (deliberately no SwiftData model layer).
+      # Add to this list; never duplicate a file into the extension folder.
+      - {{App}}/Core/Widget/WidgetSnapshot.swift
+      - {{App}}/Core/Design/Theme.swift
+      - {{App}}/Core/Design/Typography.swift
+      - {{App}}/Assets.xcassets
+      - {{App}}/Resources/Fonts
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.{{app}}.widgets
+        TARGETED_DEVICE_FAMILY: "1"
+        SKIP_INSTALL: true
+    entitlements:
+      path: {{App}}Widgets/{{App}}Widgets.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.example.{{app}}
+    info:
+      path: {{App}}Widgets/Info.plist
+      properties:
+        CFBundleDisplayName: {{App}}
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        UIAppFonts: []
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+
+# And in the app target:
+#   entitlements.properties:
+#     com.apple.security.application-groups: [group.com.example.{{app}}]
+#   dependencies:
+#     - target: {{App}}Widgets
+#       embed: true
+# Debug a widget that never leaves its placeholder:
+#   xcrun simctl spawn <udid> log show --last 5m --predicate 'process == "{{App}}Widgets"'

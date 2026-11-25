@@ -1,0 +1,5 @@
+{
+  "keyId": "PASTE key id",
+  "issuerId": "PASTE issuer id",
+  "p8": "~/Downloads/AuthKey_<KEYID>.p8"
+}

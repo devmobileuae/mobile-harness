@@ -1,0 +1,5 @@
+evals/results/
+__pycache__/
+*_safezones.png
+reports/
+local/

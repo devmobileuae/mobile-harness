@@ -1,0 +1,109 @@
+# ---------------------------------------------------------------------------
+# ORIGIN: trimmed from a shipping xcodegen app (RevenueCat + PostHog), plus the StoreKit scheme
+#         line and the Debug bundle-id split.
+# PURPOSE: skeleton for an EXISTING-style app with RevenueCat + PostHog, Info.plist in YAML,
+#          and a test target that shares a resource with the app. New apps start from
+#          ~/.claude/skills/ios-app-bootstrap/templates/project.yml instead (default MainActor).
+# REPLACE: {{App}}, {{app}}, {{AppleTeamID}} (the app's apple_team_id in local/apps.yaml), purpose strings, fonts.
+# AFTER EDITING: xcodegen generate   (the .xcodeproj is generated and git-ignored)
+# ---------------------------------------------------------------------------
+name: {{App}}
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+packages:
+  # Subscriptions. Only Core/Store/EntitlementStore.swift (+ the paywall) import it.
+  RevenueCat:
+    url: https://github.com/RevenueCat/purchases-ios
+    from: "5.0.0"
+  # Product analytics. Only Core/Analytics/PostHogBackend.swift may import it —
+  # everything else goes through the `Analytics` facade.
+  PostHog:
+    url: https://github.com/PostHog/posthog-ios
+    from: "3.69.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    TARGETED_DEVICE_FAMILY: "1"          # iPhone only (still runs on iPad in the compat window — test it)
+    # App Store version and build: bump CURRENT_PROJECT_VERSION for EVERY upload, here, not in Xcode.
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: {{AppleTeamID}}
+    GENERATE_INFOPLIST_FILE: false
+targets:
+  {{App}}:
+    type: application
+    platform: iOS
+    sources:
+      - {{App}}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.{{app}}
+      # Optional: Debug keeps a separate id so simulator data and PostHog's
+      # $app_namespace separate debug from store. Cost: Debug on a device can't load plans.
+      # configs:
+      #   Debug:
+      #     PRODUCT_BUNDLE_IDENTIFIER: com.example.{{app}}.debug
+    # Simulator purchases against a local StoreKit file. Loads only when Xcode runs the scheme,
+    # NOT with `xcrun simctl launch` (see references/traps.md).
+    # scheme:
+    #   storeKitConfiguration: Config/{{App}}.storekit
+    entitlements:
+      path: {{App}}/{{App}}.entitlements
+      properties: {}
+        # com.apple.developer.healthkit: true   # owner still toggles the capability on a signed build
+    info:
+      path: {{App}}/Info.plist
+      properties:
+        CFBundleDisplayName: {{App}}
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        # Purpose strings: say WHY each exists. HealthKit read-only still needs the UPDATE string
+        # (ITMS "Missing purpose string" on upload).
+        # NSHealthShareUsageDescription: "..."
+        # NSHealthUpdateUsageDescription: "{{App}} never writes to Apple Health. ..."
+        # NSFaceIDUsageDescription: "..."
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+        UIRequiresFullScreen: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        # HTTPS only, no custom crypto: no export-compliance question on every upload.
+        ITSAppUsesNonExemptEncryption: false
+        # Static per-weight TTFs only: variable-font named instances don't resolve by PostScript
+        # name on iOS (tofu boxes). Licences in Resources/Fonts.
+        UIAppFonts: []
+    dependencies:
+      - package: RevenueCat
+        product: RevenueCat
+      - package: PostHog
+        product: PostHog
+  {{App}}Tests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - {{App}}Tests
+      # Same file the app bundles (no copy, no drift), so tests decode it via Bundle(for:).
+      # - path: {{App}}/Core/Content/library.json
+      #   buildPhase: resources
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: true
+    dependencies:
+      - target: {{App}}
+schemes:
+  {{App}}:
+    build:
+      targets:
+        {{App}}: all
+    run:
+      config: Debug
+      # commandLineArguments:            # DEBUG seeds for Xcode runs (see templates/DemoSeed.swift)
+      #   "-{{App}}DemoSeed": false
+    test:
+      config: Debug
+      targets:
+        - {{App}}Tests

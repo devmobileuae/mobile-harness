@@ -1,0 +1,46 @@
+name: ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: pip install -r requirements.txt
+      - name: Registry gate (every skill registered, reviewed in the last 90 days, has eval cases)
+        run: python3 scripts/check_registry.py
+      - name: Frontmatter parses (skills, agents, eval prompts and graders)
+        run: |
+          python3 - <<'PY'
+          import glob, sys, yaml
+          bad = []
+          for f in glob.glob("skills/*/SKILL.md") + glob.glob("agents/*.md") + glob.glob("evals/*/prompt.md") + glob.glob("evals/*/graders/*.md"):
+              t = open(f, encoding="utf-8").read()
+              if t.startswith("---"):
+                  try:
+                      yaml.safe_load(t.split("---", 2)[1])
+                  except Exception as e:
+                      bad.append(f"{f}: {e}")
+          print("\n".join(bad) or "frontmatter OK")
+          sys.exit(1 if bad else 0)
+          PY
+      - name: Python compiles
+        run: python3 -m compileall -q scripts skills
+      - name: Workflow scripts parse
+        run: |
+          for f in workflows/*.js; do
+            { echo "async function __w(){"; sed 's/^export const meta/const meta/' "$f"; echo "}"; } > /tmp/w.js
+            node --check /tmp/w.js || { echo "syntax error in $f"; exit 1; }
+          done
+      - name: No personal data in tracked files (generic patterns; owner values run in the pre-commit hook)
+        run: python3 scripts/check_private.py
+      - name: local/ is ignored
+        run: test -z "$(git ls-files local)"

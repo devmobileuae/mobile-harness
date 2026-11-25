@@ -1,0 +1,7 @@
+{
+  "name": "borodin-harness",
+  "owner": { "name": "A. Borodin" },
+  "plugins": [
+    { "name": "mobile-harness", "source": "./", "description": "Mobile + growth agent harness: skills, agents, conclave, evals" }
+  ]
+}

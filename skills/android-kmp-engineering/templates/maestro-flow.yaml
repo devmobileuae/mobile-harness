@@ -1,0 +1,22 @@
+# ORIGIN: a Maestro UI-test repo for a multi-module Android app (flow.yaml + onboarding/onboarding_flow.yaml)
+# PURPOSE: Maestro suite layout — flow.yaml imports feature flows; steps/ are never run directly.
+# RUN: maestro test -e APP_ID=com.example.app.debug flow.yaml
+
+# 0.0.1-pre-alpha
+appId: com.example.app.debug
+
+---
+
+- runFlow: "onboarding/onboarding_flow.yaml"
+- runFlow: "auth/auth_flow.yaml"
+# ---- onboarding/onboarding_flow.yaml ----
+appId: com.example.app.debug
+
+---
+
+- runFlow: "steps/onboarding_skip.yaml"
+- runFlow: "steps/onboarding_next_steps.yaml"
+- runFlow: "steps/onboarding_next_steps_with_swipes.yaml"
+- runFlow: "steps/onboarding_previousSwipe_nextSwipe_steps.yaml"
+- runFlow: "steps/onboarding_edge_orientation_portrait.yaml"
+- runFlow: "steps/onboarding_edge_rapid_continue_taps.yaml"

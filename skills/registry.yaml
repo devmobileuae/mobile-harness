@@ -1,0 +1,145 @@
+# Skill registry — owner, freshness and provenance for every skill in this plugin.
+# check: python3 scripts/check_registry.py   (fails when reviewed > 90 days, no evals, or unregistered)
+conclave:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "two rebuilds on a guessed reading of a short complaint (a 2-option question settled it)"
+    - "portfolio review: a shipping machine without a growth engine needed decisions, not opinions"
+  evals: ["conclave-*"]
+frame-qa:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "a three-armed passenger and narration contradicting the on-screen text shipped in a reel"
+    - "six / four fingers on close-up hands"
+    - "labels placed under the Instagram username bar"
+  evals: ["frame-qa-*"]
+agent-orchestration:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "half of the background agents stalled under a 4-hour deadline"
+    - "sibling worktrees created against the owner's wish"
+    - "a simulator re-shoot workaround instead of asking for the Figma connector"
+  evals: ["orchestration-*"]
+metric-iteration:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "a week of home-screen redesign rounds, nothing shipped, the funnel metric unchanged"
+  evals: ["iteration-*"]
+session-handoff:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "\"save the context and I'll start in a fresh session\" before a multi-day build"
+  evals: ["handoff-*"]
+mobile-feature-delivery:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "a non-optional SwiftData attribute crashed upgrade installs; in-memory tests passed"
+  evals: ["mobile-*"]
+design-review:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "a screen redesign \"way too cluttered\"; hand-drawn thin icons rejected"
+    - "a detail screen spoiled locked content; corner radii not concentric"
+    - "four landing directions rejected as AI slop"
+  evals: ["design-*"]
+skill-audit:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "~120 installed skills, ~15 own, no evals, no review process"
+  evals: ["audit-*"]
+eval-driven-skills:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "feedback memories held lessons that never became tests"
+  evals: ["evaldriven-*"]
+mobile-design-iteration:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "references sent only in chat — \"put everything in Figma\""
+    - "store slides rebuilt in code instead of asking for the Figma connector"
+    - "a week of 20–40-concept rounds with no pick"
+  evals: ["figma-*"]
+aso-playbook:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "a competitor brand in the keyword field (Guideline 2.3.7)"
+    - "an App Preview replaced the Apple Ads screenshots"
+    - "an app with 2 ratings ranked #49 for its own name"
+  evals: ["aso-*"]
+app-site-seo:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "a static tool page rendered 56 words (useSearchParams)"
+    - "sitemap home URL without trailing slash — 'No referring sitemaps'"
+    - "five sessions burned the shared request-indexing quota"
+  evals: ["seo-*"]
+social-research:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "hundreds of page fetches through the owner's Instagram — \"Insta will ban me\""
+    - "a viral serial with zero install lift"
+  evals: ["social-research-*"]
+social-account-ops:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "a link in bio on a brand-new account"
+    - "TikTok photo carousels: 0 distribution on fresh accounts"
+  evals: ["social-ops-*"]
+app-pulse:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "first-task completion collapsed after a paywall change and was noticed two weeks late"
+    - "an inverted default PostHog filter — insights showed only the owner's own events"
+  evals: ["pulse-*"]
+ios-engineering:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "a non-optional SwiftData attribute crashed upgrade installs (a generic swiftdata skill advises the opposite)"
+  evals: ["mobile-swiftdata-*", "ios-*"]
+android-kmp-engineering:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "Firebase update-gate (appUpdate) forgotten before releases; separate iOS/Android Firebase projects"
+    - "parallel Gradle + emulators overheated the laptop"
+  evals: ["android-*"]
+setup:
+  owner: a.borodin
+  reviewed: 2026-11-26
+  target_model: claude-opus-5-5
+  born_from:
+    - "project IDs, Team ID and bundle ids inside skill references; values moved to git-ignored local/"
+  evals: ["setup-*"]

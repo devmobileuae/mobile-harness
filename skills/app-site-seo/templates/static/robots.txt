@@ -1,0 +1,7 @@
+# Static sites have no VERCEL_ENV gate: never deploy preview copies on a public host.
+# Block scaffolds (guides/_template.html also got <meta name="robots" content="noindex">).
+User-agent: *
+Allow: /
+Disallow: /guides/_template.html
+
+Sitemap: https://example.app/sitemap.xml

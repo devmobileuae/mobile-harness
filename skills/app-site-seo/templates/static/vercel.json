@@ -1,0 +1,10 @@
+{
+  "//": "Repo root. Static HTML site in website/: cleanUrls makes /guides/x.html 308 to /guides/x; link extensionless so crawlers skip the hop. GSC '.html duplicate' rows after this are not an issue.",
+  "outputDirectory": "website",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    { "source": "/images/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+    { "source": "/(styles.css|site.js)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] }
+  ]
+}

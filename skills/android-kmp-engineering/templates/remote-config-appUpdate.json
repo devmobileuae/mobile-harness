@@ -1,0 +1,16 @@
+{
+  "_ORIGIN": "shape of the update-gate config used in a KMP calling app; ids are placeholders, not production values",
+  "_PURPOSE": "Remote Config param `remote` (type JSON) — edit the EXISTING value in BOTH Firebase projects (Android and iOS). Delete the _ORIGIN/_PURPOSE/_RULES keys before pasting.",
+  "_RULES": [
+    "allowedIds empty or missing = feature OFF for every user",
+    "versions are the integer build number N (CURRENT_PROJECT_VERSION), never the 2026.x.y name — the shape guard ignores a different segment count",
+    "resting value min N / latest N only after the store serves N; raise latest (prompt) or min (force) after rollout",
+    "storeUrl: Play listing on Android, TestFlight link on iOS"
+  ],
+  "allowedIds": ["<user id>", "<user id>"],
+  "appUpdate": {
+    "minSupportedVersion": "19",
+    "latestVersion": "19",
+    "storeUrl": "<Play or TestFlight URL>"
+  }
+}

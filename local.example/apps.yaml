@@ -1,0 +1,28 @@
+# Copy to local/apps.yaml (git-ignored) or run: python3 scripts/setup.py
+# One block per app. Leave unknown fields empty; skills ask when they need one.
+# Skills refer to fields as <app>.<field>, e.g. "the app's posthog_project_id from local/apps.yaml".
+
+apps:
+  - key: myapp                 # short id used in file names and commands
+    name: My App
+    platforms: [ios]           # ios, android, web
+    repo_path: ~/code/myapp    # local checkout
+    bundle_id: com.example.myapp
+    android_package: ""
+    app_store_url: ""          # https://apps.apple.com/...
+    play_url: ""
+    site_url: ""
+    asc_app_id: ""             # App Store Connect → App Information → Apple ID
+    apple_team_id: ""
+    posthog_project_id: ""     # PostHog → Settings → Project
+    revenuecat_project_id: ""
+    firebase_project: ""
+    vercel_project_id: ""
+    figma_file_key: ""         # the part of the Figma URL after /design/
+    social: {}                 # e.g. {instagram: "@handle", tiktok: "@handle"}
+    notes: ""                  # one line: what the app is, who it is for, the core action
+
+# Values that are not tied to one app
+shared:
+  apple_ads_org_id: ""
+  figma_team_id: ""

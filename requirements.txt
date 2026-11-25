@@ -1,0 +1,11 @@
+# Core: eval runner, registry gate, setup
+pyyaml>=6.0
+# Store / ads scripts (aso-playbook, mobile-feature-delivery)
+PyJWT[crypto]>=2.8
+requests>=2.31
+# Image and video helpers (frame-qa, social-research, mobile-design-iteration)
+Pillow>=10.0
+# Optional: social-research/scripts transcription on Apple Silicon
+# mlx-whisper
+# Optional: websocket-based scripts
+# websocket-client

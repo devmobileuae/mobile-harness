@@ -1,0 +1,21 @@
+{
+ "prefix": "MYAPP_",
+ "bid_currency": "USD",
+ "device": "IPHONE",
+ "tiers": {
+  "t1": [
+   {"name": "MYAPP_T1_US_BRAND", "countries": ["US"], "daily": "5.00", "adgroups": [
+    {"name": "ag_brand", "bid": "0.80", "keywords": "brand"}
+   ]},
+   {"name": "MYAPP_T1_US_GENERIC", "countries": ["US"], "daily": "8.00", "adgroups": [
+    {"name": "ag_generic", "bid": "0.70", "keywords": "generic"},
+    {"name": "ag_head", "bid": "0.50", "keywords": "head", "later": true}
+   ]}
+  ],
+  "t2": [
+   {"name": "MYAPP_T2_EN_GENERIC", "countries": ["GB", "CA", "AU", "IE", "NZ"], "daily": "4.00", "adgroups": [
+    {"name": "ag_generic", "bid": "0.40", "keywords": "generic"}
+   ]}
+  ]
+ }
+}

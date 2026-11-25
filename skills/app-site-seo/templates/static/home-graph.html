@@ -1,0 +1,31 @@
+<!--
+  Static-site home graph: Organization (sameAs = BOTH store listings) + WebSite, stable @ids,
+  on the canonical host (www here because www is the primary in this example). Keep the existing
+  MobileApplication block next to it. For guides use Article + BreadcrumbList (+ FAQPage when there
+  is a visible FAQ).
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.example.app/#org",
+      "name": "MyApp",
+      "url": "https://www.example.app/",
+      "logo": "https://www.example.app/assets/icon-512.png",
+      "sameAs": [
+        "https://apps.apple.com/app/id0000000000",
+        "https://play.google.com/store/apps/details?id=com.example.myapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.example.app/#website",
+      "name": "MyApp",
+      "url": "https://www.example.app/",
+      "publisher": { "@id": "https://www.example.app/#org" }
+    }
+  ]
+}
+</script>

@@ -1,0 +1,6 @@
+{
+  "clientId": "PASTE SEARCHADS.xxxxxxxx from Apple Ads > Account Settings > API",
+  "teamId": "PASTE SEARCHADS.xxxxxxxx",
+  "keyId": "PASTE the keyId",
+  "privateKey": "~/.config/apple-ads/private-key.pem"
+}

@@ -1,0 +1,29 @@
+{
+ "num": 1,
+ "name": "Chain of Seven",
+ "family": "Weekly chain, forgiving streak",
+ "tagline": "Seven days, one chain. Miss a day and a link cracks, it doesn't break.",
+ "pitch": "Day-2 retention is the leak. A visible weekly chain with forgiving cracks gives a reason to open the app tomorrow without the shame of a reset streak.",
+ "screens": [
+  {"role": "Onboarding", "title": "The first link", "layout": "Grey caps 13 'DAY 1'. Card with the habit name 22 and a 96 pt check button. The chain, link 1 closed, caption '1 of 7'. Home indicator."},
+  {"role": "Main", "title": "The chain", "layout": "Top bar: app name 30, streak pill '3'. Seven-link chain. Card 'TONIGHT' with primary 'Log today'. Row grey 14 'Repair a crack: log 2 days in a row'. Tab bar."},
+  {"role": "Share", "title": "Week card", "layout": "Card 300x533, corner 28: app name 22, '7 of 7' 40, the chain, the habit, tiny site footer. Under it: primary 'Share', secondary 'Save image'."}
+ ],
+ "note": {
+  "from": "Duolingo's streak freeze; Apple Fitness rings close per day.",
+  "hook": "No slides: the first habit is pre-filled and one tap closes link 1.",
+  "loop": "Main is the chain with today's link pulsing and one primary button.",
+  "viral": "A week card after day 7.",
+  "retention": "An open link tonight; a cracked link repaired by two days in a row.",
+  "build": "S. Logging and reminders exist; the chain is a new view."
+ },
+ "adapt": "Use the sprite's link and check icons; no new illustration. Player Maya, today Thursday.",
+ "background": {
+  "oneLiner": "One tap closes today's link; seven links make a week; a miss cracks a link instead of resetting.",
+  "onboardingGame": "(0-5 s) pre-filled habit card; (5-15 s) tap closes link 1 with a click, '1 of 7'; (15-30 s) 'Nudge me at 9 pm?'.",
+  "mainScreen": "Day 3: links 1-2 closed, 3 pulsing, 4-7 open; card TONIGHT; repair row.",
+  "coreLoop": "Log once a day; links close; a miss cracks a link; two days in a row repairs it.",
+  "viralLoop": "Week card with the chain and the habit, offered after day 7.",
+  "retentionLoop": "Evening reminder names the open link; the cracked link is a reason to log twice."
+ }
+}

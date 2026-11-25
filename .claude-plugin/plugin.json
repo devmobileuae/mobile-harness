@@ -1,0 +1,9 @@
+{
+  "name": "mobile-harness",
+  "version": "0.5.0",
+  "description": "How a one-person mobile studio (iOS + Android + growth) ships with agents: skills distilled from real production feedback, role agents, a debate 'conclave' for decisions, delivery workflows, and evals that turn every past mistake into a regression test.",
+  "author": {
+    "name": "A. Borodin"
+  },
+  "keywords": ["mobile", "ios", "android", "growth", "agents", "evals", "multi-agent", "debate"]
+}
